@@ -5,6 +5,7 @@ import { InputLabel,FormControl, InputAdornment, IconButton, OutlinedInput,Butto
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import NSheading from '../../components/shared/heading/heading';
+import axios from '../../interceptors/commonInterceptor';
 
 const useStyle = makeStyles({
   input:{
@@ -31,8 +32,13 @@ function Login() {
   const [passwordDirty,setPasswordDirty]=useState(false)
   const style = useStyle()
   const login = ()=>{
-    console.log('username:',username)
-    console.log('password:',password)
+    axios.post('auth/login',{username,password}).then(res=>{
+      console.log(res)
+    },
+    e=>{
+      console.log(e.message)
+    }
+    )
   }
   const hanldeUsenameChange = e=>{
     setUsername(e.target.value)
