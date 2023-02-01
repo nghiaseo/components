@@ -1,0 +1,15 @@
+.side-menu-item{
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;  
+}
+.side-menu-item:hover{
+    cursor: pointer;
+    background-color: #F7f7ff;   
+}
+.side-menu-item.active{
+    background-color: #F7f7ff;
+}

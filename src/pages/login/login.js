@@ -6,7 +6,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import NSheading from '../../components/shared/heading/heading';
 import axios from '../../interceptors/commonInterceptor';
-
+import { useToasts } from "react-toast-notifications";
+import {useNavigate} from 'react-router-dom'
 const useStyle = makeStyles({
   input:{
   width:'300px'
@@ -25,18 +26,23 @@ const useStyle = makeStyles({
   }
 })
 function Login() {
+  const nav = useNavigate()
   const [showPassword,setShowPassword]=useState(false)  
   const [password,setPassword]=useState('')
   const [username,setUsername] = useState('')
   const [usernameDirty,setUsernameDirty]=useState(false)
   const [passwordDirty,setPasswordDirty]=useState(false)
   const style = useStyle()
+  const toasts = useToasts()
   const login = ()=>{
     axios.post('auth/login',{username,password}).then(res=>{
-      console.log(res)
+      toasts.addToast("Login Successfully !",{appearance:'success'})
+      localStorage.setItem('token',res.data.token)
+      nav('/')
     },
     e=>{
       console.log(e.message)
+      toasts.addToast(e.message,{appearance:'error'})
     }
     )
   }
@@ -49,6 +55,7 @@ function Login() {
     setPasswordDirty(true)
   }
   return (
+
     <div className='main'>
         <div className="login-container">
       <NSheading></NSheading>
@@ -79,6 +86,7 @@ function Login() {
     </div>    
       </div>
     </div>
+   
   );
 }
 

@@ -1,0 +1,14 @@
+.status-icon{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.online{
+    background-color: green;
+}
+.offline{
+    background-color: gray;
+}
+.busy{
+    background-color: orange;
+}

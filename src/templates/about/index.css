@@ -1,0 +1,8 @@
+.about-temp-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.about-temp-container label{
+    color: #7a7f9a;
+}

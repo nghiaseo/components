@@ -1,0 +1,19 @@
+.menu-item-heading{
+    display: flex;
+    justify-content: space-between;
+}
+.menu-item-heading-option{
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.menu-item-heading-text{
+    font-size: 24px;
+    font-weight: bold;
+}
+.menu-item-heading-option:hover{
+    background-color: #F7f7ff;
+    cursor: pointer;
+}

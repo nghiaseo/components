@@ -1,0 +1,32 @@
+.user-profile-general{
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 1px solid #f0eef5;
+}
+.user-profile-general-avata img{
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+.user-profile-general-name{
+    text-align: center;
+    font-weight: bold;
+}
+.user-profile-general-status{
+    display: flex;
+    justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.status-text{
+    text-transform: capitalize;
+}
+.description{
+    padding: 20px;
+}
+
