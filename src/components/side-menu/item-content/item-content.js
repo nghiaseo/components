@@ -2,6 +2,7 @@ import UserProfile from "../../user-profile/user-profile"
 import Chats from "../../chats/chats"
 import AddressBook from "../../address-book/address-book"
 import Setting from "../../setting/setting"
+import './index.css'
 function ItemContent(pros){
     function itemRendered(id){
         switch (id) {

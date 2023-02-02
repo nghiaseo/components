@@ -1,0 +1,46 @@
+.address-book-container{
+    height: 100%;
+}
+.addressBook{
+    height: calc(100% - 52px);
+    overflow: auto;
+    margin: 20px 0;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.addressBook-anphabet{
+    font-weight: bold;   
+}
+.addressBook-anphabet-item{
+    padding: 20px;
+}
+.addressBook-anphabet-item ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

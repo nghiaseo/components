@@ -12,5 +12,6 @@ export const makeAddressBook = (data) => {
     }
   }
 };
-return addressBook
+
+return Object.keys(addressBook).map(key=>[key,addressBook[key]])
 }

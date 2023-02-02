@@ -10,6 +10,7 @@ function UserProfile(){
         title:'About',
         icon:'user'
     }
+    
     function statusHandle(stas){
         let status = ''
         if(stas===0) status = 'offline'
