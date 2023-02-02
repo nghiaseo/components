@@ -10,13 +10,11 @@ function UserProfile(){
         title:'About',
         icon:'user'
     }
-    
     function statusHandle(stas){
         let status = ''
         if(stas===0) status = 'offline'
         if(stas===1) status = 'online'
         if(stas===2){ status = 'busy'}
-
          return (<>
         <StatusIcon status={status}></StatusIcon>
         <div className='status-text'>{status}</div>
