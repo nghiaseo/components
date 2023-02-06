@@ -4,12 +4,24 @@ import StatusIcon from '../shared/status-icon/status-icon'
 import MenuItemHeading from '../shared/menu-item-heading/menu-item-heading'
 import DropdownPanel from '../shared/dropdown-panel'
 import AboutTemp from '../../templates/about'
+import {useEffect,useState} from 'react'
+import {userService} from '../../services/userService'
+import {decodeToken} from 'react-jwt'
 function UserProfile(){
     const description = `If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual.`
     const titleAbout = {
         title:'About',
         icon:'user'
     }
+    const username = decodeToken(localStorage.getItem('token')).username;
+    const [userInfo,setUserInfo] = useState(undefined)
+    useEffect(()=>{
+       const  getUserInfo = async ()=>{
+        const info = (await userService.getUser(username)).data.data
+        setUserInfo(info)
+       }
+       getUserInfo()
+    },[])
     function statusHandle(stas){
         let status = ''
         if(stas===0) status = 'offline'
@@ -34,7 +46,7 @@ function UserProfile(){
             </div>
             <div className='description'>{description}</div>
             <div>
-                <DropdownPanel title={titleAbout} content={<AboutTemp></AboutTemp>} ></DropdownPanel>
+                <DropdownPanel title={titleAbout} content={<AboutTemp userInfo={userInfo}></AboutTemp>} ></DropdownPanel>
             </div>
         </div>
     )

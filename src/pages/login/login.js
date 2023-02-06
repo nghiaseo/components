@@ -1,5 +1,5 @@
 import "./login.css"
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { InputLabel,FormControl, InputAdornment, IconButton, OutlinedInput,Button,FormHelperText } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
@@ -34,16 +34,17 @@ function Login() {
   const [passwordDirty,setPasswordDirty]=useState(false)
   const style = useStyle()
   const toasts = useToasts()
+  const handleEnterKey = (e)=>{    
+    if(e.keyCode===13) login()
+  }
   const login = ()=>{
+    console.log(username,password)
     axios.post('auth/login',{username,password}).then(res=>{
       toasts.addToast("Login Successfully !",{appearance:'success'})
       localStorage.setItem('token',res.data.token)
       nav('/')
     },
-    e=>{
-      console.log(e.message)
-      toasts.addToast(e.message,{appearance:'error'})
-    }
+    e=>      toasts.addToast(e.message,{appearance:'error'})
     )
   }
   const hanldeUsenameChange = e=>{
@@ -63,14 +64,14 @@ function Login() {
       <FormControl className={style.input} variant='outlined'>
       <InputLabel>Username</InputLabel>
       <OutlinedInput error={usernameDirty&&username===''} labelWidth={80} value={username} 
-      onChange={e=>hanldeUsenameChange(e)}
+      onChange={e=>hanldeUsenameChange(e)} onKeyUp={e=>handleEnterKey(e)}
       ></OutlinedInput>
       {(usernameDirty&&username==='')&&(<FormHelperText className={style.errMes}>Username is required !</FormHelperText>)}
       </FormControl>
       <FormControl className={style.input} variant='outlined'>
         <InputLabel>Password</InputLabel>
         <OutlinedInput error={passwordDirty&&password===''} type={showPassword?'text':'password'} value={password}
-        onChange={e=>handlePasswordChange(e)}
+        onChange={e=>handlePasswordChange(e)}  onKeyUp={e=>handleEnterKey(e)}
         labelWidth={80}
         endAdornment={
           <InputAdornment position='end'>
