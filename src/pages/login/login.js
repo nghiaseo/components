@@ -38,7 +38,6 @@ function Login() {
     if(e.keyCode===13) login()
   }
   const login = ()=>{
-    console.log(username,password)
     axios.post('auth/login',{username,password}).then(res=>{
       toasts.addToast("Login Successfully !",{appearance:'success'})
       localStorage.setItem('token',res.data.token)

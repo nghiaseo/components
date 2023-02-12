@@ -11,7 +11,7 @@ function ItemContent(pros){
             case 1:
                 return <Chats></Chats>    
             case 2:
-                return <AddressBook></AddressBook>
+                return <AddressBook onClickPartnerName = {pros.onClickPartnerName}></AddressBook>
             case 3:
                 return <Setting></Setting>   
             default:

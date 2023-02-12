@@ -8,7 +8,7 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Tooltip from "@material-ui/core/Tooltip";
 import {useNavigate} from 'react-router-dom'
 library.add(faRightFromBracket);
-function SideMenu() {
+function SideMenu(pros) {
   const items = [
     {
       id: 0,
@@ -56,7 +56,7 @@ function SideMenu() {
         </Tooltip>
       </div>
       <div className="side-menu-item-content">
-        <ItemContent contentId={activeItem}></ItemContent>
+        <ItemContent onClickPartnerName={pros.onClickPartnerName} contentId={activeItem}></ItemContent>
       </div>
     </div>
   );

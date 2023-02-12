@@ -7,6 +7,10 @@ import {userService} from '../../services/userService'
 const Context = createContext()
 function Home(){
     const [listUsers,setListUsers]=useState()
+    const [partnerUsername,setPartnerUsername] = useState(undefined)
+    const handleClickPartnername = (e)=>{
+        setPartnerUsername(e)
+    }
 useEffect( ()=>{
     async function getAllUser(){
         const users = (await userService.getAlluser()).data
@@ -17,8 +21,8 @@ useEffect( ()=>{
     return(
         <Context.Provider value={listUsers}>
         <div className="home-container">
-            <SideMenu></SideMenu>
-            <ChatContent></ChatContent>
+            <SideMenu onClickPartnerName ={handleClickPartnername}></SideMenu>
+            <ChatContent partnerUsername={partnerUsername}></ChatContent>
         </div>
         </Context.Provider>
     )

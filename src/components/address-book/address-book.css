@@ -24,6 +24,9 @@ ul{
     align-items: flex-start;
     gap: 10px;
 }
+.addressBook-anphabet-item ul li{
+  cursor: pointer;
+}
 ::-webkit-scrollbar {
     width: 10px;
   }

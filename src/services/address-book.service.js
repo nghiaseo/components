@@ -8,10 +8,10 @@ export const makeAddressBook = (data) => {
         (v.fullname.charCodeAt(0) === key.charCodeAt(0) ||
           v.fullname.charCodeAt(0) === key.charCodeAt(0) + 32)
       ) {
-        addressBook[key].push(v.fullname);    
+        addressBook[key].push({fullname:v.fullname,username:v.username});    
     }
   }
 };
 
-return Object.keys(addressBook).map(key=>[key,addressBook[key]])
+ return Object.keys(addressBook).map(key=>[key,addressBook[key]])
 }
