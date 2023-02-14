@@ -1,0 +1,17 @@
+.ownMessage,.partnerMessage{
+    display: flex;
+    
+}
+.ownMessage{
+    justify-content: right;
+}
+.partnerMessage{
+    justify-content: left;
+}
+.chat-box-container{
+    padding: 10px;
+    background: #007AFF;
+    color: #fff;
+    border-radius: 4px;
+
+}
