@@ -11,8 +11,13 @@
     justify-content: space-between;
     height: 100%;
 }
+.wrapper{
+   flex-grow: 1;
+   overflow: auto;
+}
 .chat-history-content{
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
