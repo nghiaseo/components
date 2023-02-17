@@ -1,5 +1,4 @@
 import './user-profile.css'
-import avatar from '../../assets/images/avata.jpg'
 import StatusIcon from '../shared/status-icon/status-icon'
 import MenuItemHeading from '../shared/menu-item-heading/menu-item-heading'
 import DropdownPanel from '../shared/dropdown-panel'
@@ -8,6 +7,8 @@ import {useEffect,useState} from 'react'
 import {userService} from '../../services/userService'
 import {decodeToken} from 'react-jwt'
 function UserProfile(){
+    const [avatar]=useState('../user.png')
+    const [fullName] = useState(decodeToken(localStorage.getItem("token")).fullname);
     const description = `If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual.`
     const titleAbout = {
         title:'About',
@@ -39,7 +40,7 @@ function UserProfile(){
                 <div className='user-profile-general-avata'>
                     <img src={avatar} alt=""></img>
                 </div>
-                <div className='user-profile-general-name'>admin</div>
+                <div className='user-profile-general-name'>{fullName}</div>
                 <div className='user-profile-general-status'>
                     {statusHandle(1)}
                 </div>

@@ -16,10 +16,10 @@ function SideMenu(pros) {
       id: 0,
       icon: "user",
     },
-    {
-      id: 1,
-      icon: "comment",
-    },
+    // {
+    //   id: 1,
+    //   icon: "comment",
+    // },
     {
       id: 2,
       icon: "address-book",
