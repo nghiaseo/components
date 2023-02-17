@@ -8,13 +8,13 @@ import {userService} from '../../services/userService'
 import {decodeToken} from 'react-jwt'
 function UserProfile(){
     const [avatar]=useState('../user.png')
-    const [fullName] = useState(decodeToken(localStorage.getItem("token")).fullname);
+    const [fullName] = useState(decodeToken(localStorage.getItem("token"))?.fullname);
     const description = `If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual.`
     const titleAbout = {
         title:'About',
         icon:'user'
     }
-    const username = decodeToken(localStorage.getItem('token')).username;
+    const username = decodeToken(localStorage.getItem('token'))?.username;
     const [userInfo,setUserInfo] = useState(undefined)
     useEffect(()=>{
        const  getUserInfo = async ()=>{
