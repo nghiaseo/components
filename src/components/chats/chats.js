@@ -11,61 +11,44 @@ const socket = io.connect(host)
 function Chats(pros) {
   const bottomRef = useRef(null)
   const placeholder = "Nhập nội dung";
-  const [id,setId] = useState()
   const [message, setMessage] = useState("");
-  const [senderId] = useState(decodeToken(localStorage.getItem("token")).id);
+  const [yourId] = useState(decodeToken(localStorage.getItem("token")).id);
   const [receiver, setReceiver] = useState();
   const [chatHistory, setChatHistory] = useState([]);
-  
-useEffect(()=>{
-  bottomRef.current?.scrollIntoView({behavior: 'smooth'});
-  
-  socket.on('getId', data => {
-    console.log(data)
-    setId(data)
-  })
-  socket.on('sendDataServer', dataGot => {
-    const message = dataGot.data
-    if(message.sender==senderId) chatHistory.push({sender:0,mess:message.message})
-    else chatHistory.push({sender:1,mess:message.message})
-    setChatHistory(chatHistory)
-    
-  }) 
-  userService.getUser(pros.partnerUsername).then(res=>{
-    setReceiver(res.data.data)
-    return res.data.data.id
-  }).then(res=>{
-    conversationService.getConversation({id1:senderId,id2:res}).then(conversation=>{
-      const messages = conversation.data.data
-      const chats = []
-      for(const message of messages){
-        if(message.sender==senderId) chats.push({sender:0,mess:message.message})
-        else chats.push({sender:1,mess:message.message})
-      }
-      setChatHistory(chats)
-    })
-  })
-  return () => {
-    socket.disconnect();
-  };
-},
-[pros,socket,chatHistory]
-// [pros,socket]
-)
-  
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    socket.on('sendDataServer', (data) =>{
+      const lastMess = {sender:(data.data.sender==yourId?0:1),mess:data.data.message}
+      console.log(lastMess)
+       setChatHistory([...chatHistory, lastMess])
+      });
+  }, [chatHistory]);
+  useEffect(()=>{
+    userService.getUser(pros.partnerUsername).then(res=>{
+          setReceiver(res.data.data)
+          return res.data.data.id
+        }).then(res=>{
+          conversationService.getConversation({id1:yourId,id2:res}).then(conversation=>{
+            const messages = conversation.data.data
+            const chats = []
+            for(const message of messages){
+              if(message.sender==yourId) chats.push({sender:0,mess:message.message})
+              else chats.push({sender:1,mess:message.message})
+            }
+            setChatHistory(chats)
+          })
+        })
+
+  },[pros])
+
   const handleMessageChange = (mess) => {
     setMessage(mess);
   };
   const sendMessage = async (m) => {
-    // chatHistory.push({
-    //   sender: 0,
-    //   mess: m,
-    // });
-    // setChatHistory(chatHistory);
     setMessage("");
     const message = {
-      sender: senderId,
-      receiver: receiver.id,
+      sender: yourId,
+      receiver: receiver?.id,
       message: m,
     };
     socket.emit('sendDataClient', message)
@@ -77,7 +60,7 @@ useEffect(()=>{
     }
   };
   const messages = () =>
-    chatHistory.map((message) => <ChatBox mess={message}></ChatBox>);
+    chatHistory.map((message,i) => <ChatBox key={i} mess={message}></ChatBox>);
   const chatHistoryContainer = () => (
     <div className="chat-history-container">
       <div className="chat-history-header">

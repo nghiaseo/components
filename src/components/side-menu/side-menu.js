@@ -7,8 +7,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Tooltip from "@material-ui/core/Tooltip";
 import {useNavigate} from 'react-router-dom'
+import { useEffect } from "react";
 library.add(faRightFromBracket);
 function SideMenu(pros) {
+ 
   const items = [
     {
       id: 0,
@@ -27,8 +29,12 @@ function SideMenu(pros) {
       icon: "gear",
     },
   ];
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(pros.tabId);
+  useEffect(()=>{
+    setActiveItem(pros.tabId)
+  },[pros])
   const handleClickMenuItem = (id) => {
+    pros.handleTabId(id)
     setActiveItem(id);
   };
   const listItems = items.map((item) => (

@@ -15,7 +15,9 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     return response;
   }, function (error) {
-    // window.location.replace('/login')
+    
+    if(error.response.status==403)
+     window.location.replace('/login')
     return Promise.reject(error);
   });
 export default axios

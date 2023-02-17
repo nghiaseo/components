@@ -3,15 +3,17 @@ import Chats from "../../chats/chats"
 import AddressBook from "../../address-book/address-book"
 import Setting from "../../setting/setting"
 import './index.css'
+import RecentChats from "src/components/recentChats"
 function ItemContent(pros){
     function itemRendered(id){
         switch (id) {
             case 0:
                 return <UserProfile></UserProfile>
             case 1:
-                return <Chats></Chats>    
+                return <RecentChats></RecentChats>
+                // <Chats onClickPartnerName = {pros.onClickPartnerName}></Chats>    
             case 2:
-                return <AddressBook onClickPartnerName = {pros.onClickPartnerName}></AddressBook>
+                return <AddressBook  onClickPartnerName = {pros.onClickPartnerName}></AddressBook>
             case 3:
                 return <Setting></Setting>   
             default:

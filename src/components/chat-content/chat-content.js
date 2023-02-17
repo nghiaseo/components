@@ -7,7 +7,7 @@ function ChatContent(pros){
                     <div className='nochat-content-img'>
                         <img src={chatIcon} alt=""></img>
                     </div>
-                    <div className='nochat-content-start'>
+                    <div onClick={()=>pros.handleTabId(2)} className='nochat-content-start'>
                     Start Conversation
                     </div>
                 </div>
